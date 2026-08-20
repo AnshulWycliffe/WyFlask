@@ -11,3 +11,6 @@ All notable changes to this project will be documented in this file.
 - Security Decorators and Password Utilities
 - Request Middleware and Logger Utilities
 - Developer CLI for project and module generation
+
+## [0.1.1] - Bug Fixes
+- app.py not able to be imported fixed
