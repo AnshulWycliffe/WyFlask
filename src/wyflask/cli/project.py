@@ -126,7 +126,6 @@ body {
     width: 150px;
     height: auto;
     max-height: 150px;
-    filter: drop-shadow(0 0 20px rgba(2, 132, 199, 0.4));
 }
 
 @keyframes float {
