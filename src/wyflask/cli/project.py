@@ -1,4 +1,5 @@
 import os
+import shutil
 
 def create_project(name: str):
     """Creates a new WyFlask project structure."""
@@ -13,6 +14,21 @@ def create_project(name: str):
     os.makedirs(os.path.join(name, "app", "static", "js"))
     os.makedirs(os.path.join(name, "app", "static", "img"))
     os.makedirs(os.path.join(name, "tests"))
+
+    # Copy logo.png to app/static/img/logo.png if found
+    logo_dest = os.path.join(name, "app", "static", "img", "logo.png")
+    possible_sources = [
+        os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "logo.png"),
+        os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))), "logo.png"),
+        os.path.join(os.getcwd(), "logo.png"),
+    ]
+    for src in possible_sources:
+        if os.path.exists(src):
+            try:
+                shutil.copy(src, logo_dest)
+                break
+            except Exception:
+                pass
 
     # app/__init__.py
     with open(os.path.join(name, "app", "__init__.py"), "w") as f:
