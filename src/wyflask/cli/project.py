@@ -43,23 +43,13 @@ def create_project(name: str):
 <body>
     <div class="container">
         <div class="logo-container">
-            <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M50 5 L90 25 L90 75 L50 95 L10 75 L10 25 Z" fill="url(#grad)" />
-                <path d="M50 20 L75 35 L75 65 L50 80 L25 65 L25 35 Z" fill="#ffffff" />
-                <path d="M50 35 L60 40 L60 60 L50 65 L40 60 L40 40 Z" fill="#2563eb" />
-                <defs>
-                    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stop-color="#3b82f6" />
-                        <stop offset="100%" stop-color="#1e3a8a" />
-                    </linearGradient>
-                </defs>
-            </svg>
+            <img class="logo" src="{{ url_for('static', filename='img/logo.png') }}" alt="WyFlask Logo" onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/AnshulWycliffe/WyFlask/main/assets/logo.png';">
         </div>
         <h1>Welcome to WyFlask</h1>
         <p>Your production-grade Flask framework is ready.</p>
         <div class="links">
-            <a href="#" class="btn primary">Documentation</a>
-            <a href="#" class="btn secondary">GitHub</a>
+            <a href="https://github.com/AnshulWycliffe/WyFlask" target="_blank" rel="noopener noreferrer" class="btn primary">GitHub Repository</a>
+            <a href="https://github.com/AnshulWycliffe/WyFlask#documentation" target="_blank" rel="noopener noreferrer" class="btn secondary">Documentation</a>
         </div>
         <div class="terminal">
             <div class="terminal-header">
@@ -82,12 +72,15 @@ def create_project(name: str):
     # app/static/css/style.css
     css_content = """
 :root {
-    --bg: #0f172a;
-    --text: #f8fafc;
-    --primary: #3b82f6;
-    --primary-hover: #2563eb;
-    --secondary: #334155;
-    --secondary-hover: #475569;
+    --bg: #00273d;
+    --text: #ffffff;
+    --primary: #0284c7;
+    --primary-hover: #0369a1;
+    --secondary: #003859;
+    --secondary-hover: #004d7a;
+    --terminal-bg: #001e2f;
+    --terminal-header: #001724;
+    --border: #004166;
 }
 
 body {
@@ -115,13 +108,14 @@ body {
 
 .logo {
     width: 150px;
-    height: 150px;
-    filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.5));
+    height: auto;
+    max-height: 150px;
+    filter: drop-shadow(0 0 20px rgba(2, 132, 199, 0.4));
 }
 
 @keyframes float {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    50% { transform: translateY(-15px); }
     100% { transform: translateY(0px); }
 }
 
@@ -129,14 +123,15 @@ h1 {
     font-size: 3rem;
     font-weight: 800;
     margin: 0 0 1rem 0;
-    background: linear-gradient(to right, #60a5fa, #3b82f6);
+    color: var(--text);
+    background: linear-gradient(to right, #ffffff, #7dd3fc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 p {
     font-size: 1.25rem;
-    color: #94a3b8;
+    color: #bae6fd;
     margin-bottom: 2rem;
 }
 
@@ -158,17 +153,18 @@ p {
 .btn.primary {
     background-color: var(--primary);
     color: white;
-    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+    box-shadow: 0 4px 14px 0 rgba(2, 132, 199, 0.39);
 }
 
 .btn.primary:hover {
     background-color: var(--primary-hover);
-    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.23);
+    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.23);
 }
 
 .btn.secondary {
     background-color: var(--secondary);
     color: white;
+    border: 1px solid var(--border);
 }
 
 .btn.secondary:hover {
@@ -176,20 +172,20 @@ p {
 }
 
 .terminal {
-    background-color: #1e293b;
+    background-color: var(--terminal-bg);
     border-radius: 0.5rem;
     overflow: hidden;
     text-align: left;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-    border: 1px solid #334155;
+    border: 1px solid var(--border);
 }
 
 .terminal-header {
-    background-color: #0f172a;
+    background-color: var(--terminal-header);
     padding: 0.75rem 1rem;
     display: flex;
     gap: 0.5rem;
-    border-bottom: 1px solid #334155;
+    border-bottom: 1px solid var(--border);
 }
 
 .dot {
@@ -205,13 +201,13 @@ p {
 .terminal-body {
     padding: 1.5rem;
     font-family: monospace;
-    color: #e2e8f0;
+    color: #f0f9ff;
     line-height: 1.5;
 }
 
 .terminal-body code::before {
     content: "$ ";
-    color: #3b82f6;
+    color: #38bdf8;
 }
 """
     with open(os.path.join(name, "app", "static", "css", "style.css"), "w") as f:
